@@ -5,18 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grid Ticket</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <main class="ticket">
         <div class="ticket__header">
-            <p>LIVE PROGRAMMING MUSIC</p>
-            <H1>WEAREIMD</H1>
+            <h1>WEAREIMD</h1>
+            <h3>LIVE PROGRAMMING MUSIC</h3>
         </div>
-        <h2 class="ticket__date">FEB 29</h2>
-        <h2 class="ticket__admit">ADMIT ONE</h2>
-        <h2 class="ticket__price">TICKET <span>&euro;15</span></h2>
-        <p>Being frsutrated with CSS Grid is included in the ticket price</p>
-        <img src="assets/qr.png" alt="qr-code for the festival">
+        <div class="ticket__qr">
+            <img src="assets/qr.png" alt="qr-code for the festival">
+        </div>
+        <div class="ticket__date">
+            <h2>FEB 29</h2>
+        </div>
+        <div class="ticket__admit">
+            <h2>ADMIT ONE</h2>
+        </div>
+        <div class="ticket__price">
+            <h2>TICKET <span class="wght--normal">&euro;15</span></h2>
+        </div>
+        <div class="ticket__included">
+            <p>Being frsutrated with CSS Grid is included in the ticket price</p>
+        </div>
+
     </main>
 </body>
 </html>
