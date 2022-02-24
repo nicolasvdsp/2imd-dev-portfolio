@@ -1,0 +1,28 @@
+body{
+    font-family: sans-serif;
+    padding: 0.5em;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.card {
+    background-color: #E22959;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card--broken {
+    background-color: #80FDF2;
+}
+
+.card--infinity {
+    background-color: #FCFB00;
+}
