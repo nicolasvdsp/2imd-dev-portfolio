@@ -4,8 +4,7 @@ body{
 }
 
 .cards {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 1em;
 }
 
@@ -13,6 +12,7 @@ body{
     background-color: #E22959;
     padding: 1em;
     display: flex;
+    height: 50px;
     justify-content: center;
     align-items: center;
     font-weight: bold;
@@ -26,3 +26,10 @@ body{
 .card--infinity {
     background-color: #FCFB00;
 }
+
+@media(min-width: 400px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
