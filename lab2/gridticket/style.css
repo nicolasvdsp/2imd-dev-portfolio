@@ -77,8 +77,11 @@ h3 {
     display: none;
 }
 
+.darkmode {
+    display: none;
+}
 
-@media(min-width: 900px) {
+@media(min-width: 920px) {
     h1 {
         margin: 6px;
         font-size: 4em;
@@ -127,5 +130,30 @@ h3 {
         grid-column: 1/4;
         grid-row: 3/4;
         font-size: .8em;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .ticket {
+        background-image: url(./assets/festival--dark.png);
+    }
+
+    .ticket, .ticket * {
+        color: white;
+        border-color: white;
+    }
+
+    .ticket__qr {
+        border-color: white;
+        mix-blend-mode: normal;
+    }
+
+    .darkmode {
+        display: initial;
+    }
+
+    .lightmode {
+        display: none;
     }
 }
