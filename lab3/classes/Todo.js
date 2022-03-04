@@ -39,7 +39,9 @@ export default class Todo {
     if(localTodoList === null) {
       localTodoList = [];
       localTodoList.push(this.title);
-      console.log(localTodoList);
+      localStorage.setItem("todos", JSON.stringify(localTodoList));
+      console.log(JSON.parse(localStorage.getItem("todos")));
+
     }
 
     // localStorage only supports strings, not arrays
