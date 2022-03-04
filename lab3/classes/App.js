@@ -26,6 +26,7 @@ export default class App {
       let todoTitle = document.querySelector("#add-item-text").value;
       let todo = new Todo(todoTitle);
       todo.add();
+      this.reset();
     }
     // done - this function should create a new todo by using the Todo() class
     // done - new Todo(text) 
@@ -44,5 +45,7 @@ export default class App {
 
   reset() {
     // this function should reset the form / clear the text field
+    console.log("reset");
+    document.querySelector("#add-item-text").value = "";
   }
 }
