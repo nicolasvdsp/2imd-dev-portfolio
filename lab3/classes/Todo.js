@@ -9,6 +9,7 @@ export default class Todo {
     // HINT🤩
     let li = document.createElement("li");
     li.innerHTML = this.title;
+    li.classList.add("prior-high");
     return li;
     // this method will create the HTML structure with the correct classes, based on the todo priority
     // done - let newNote = document.createElement("li");
