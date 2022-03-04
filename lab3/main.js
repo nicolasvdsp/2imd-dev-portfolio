@@ -1,6 +1,3 @@
-import './style.css'
+import App from "./classes/App.js";
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+let app = new App();
