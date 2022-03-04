@@ -1,3 +1,5 @@
+import Todo from "./Todo.js";
+
 export default class App {
   constructor() {
     console.log("🍕");
@@ -12,14 +14,17 @@ export default class App {
     console.log("👂🏽");
     // HINT🤩
     // pressing the enter key in the text field triggers the createItem function
-    // addEventListener("keyup", this.createItem.bind(this));
+    document.querySelector("#add-item-text").addEventListener("keyup", this.createItem.bind(this));
     // read up on .bind() -> we need to pass the current meaning of this to the eventListener
     // while testing, feel free to console.log(this) to see what's in it
   }
 
   createItem(e) {
-    console.log("📕");
     // HINT🤩
+    
+    if(e.keyCode == "13") {
+      let todo = new Todo("todo title");
+    }
     // this function should create a new todo by using the Todo() class
     // new Todo(text)
     // todo.add();
