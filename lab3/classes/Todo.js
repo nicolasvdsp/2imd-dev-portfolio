@@ -2,8 +2,8 @@ export default class Todo {
   constructor(title) {
     console.log(title);
     // HINT🤩
+    this.title = title;
     // use a constructor to set basic property values
-    // this.title = title;
   }
 
   createElement() {

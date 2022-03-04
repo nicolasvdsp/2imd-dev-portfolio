@@ -23,15 +23,16 @@ export default class App {
     // HINT🤩
     
     if(e.keyCode == "13") {
-      let todo = new Todo("todo title");
+      let todoTitle = document.querySelector("#add-item-text").value;
+      let todo = new Todo(todoTitle);
     }
-    // this function should create a new todo by using the Todo() class
-    // new Todo(text)
+    // done - this function should create a new todo by using the Todo() class
+    // done - new Todo(text) 
     // todo.add();
     // todo.saveToStorage();
-    // if you used bind() in the previous function, you'll notice that this refers to the current class instance
+    // done - if you used bind() in the previous function, you'll notice that this refers to the current class instance
     // clear the text field with .reset() after adding the item
-    // if (e.key === "Enter")
+    // done - if (e.key === "Enter")
   }
 
   loadFromStorage() {
