@@ -41,8 +41,13 @@ export default class App {
   loadFromStorage() {
     // HINT🤩
     let loadLocalTodoList = JSON.parse(localStorage.getItem("todos"));
-    console.log(loadLocalTodoList);
+    loadLocalTodoList.forEach(todoTitle => {
+      let todoItem = new Todo(todoTitle);
+      todoItem.createElement();
+      todoItem.add();
+    });
     
+    console.log(loadLocalTodoList);
     
     // load all items from storage here and add them to the screen
     // use the Todo class to create the elements
