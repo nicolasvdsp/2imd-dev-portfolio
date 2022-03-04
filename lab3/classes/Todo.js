@@ -1,13 +1,14 @@
 export default class Todo {
   constructor(title) {
-    console.log(title);
     // HINT🤩
     this.title = title;
-    // use a constructor to set basic property values
+    // done - use a constructor to set basic property values
   }
 
   createElement() {
     // HINT🤩
+    let newNote = document.createElement("li");
+    console.log(newNote);
     // this method will create the HTML structure with the correct classes, based on the todo priority
     // let newNote = document.createElement("li");
     // check if the todo item includes a priority like medium: to generate the correct classnames
@@ -24,6 +25,7 @@ export default class Todo {
   add() {
     // HINT🤩
     // this function should append the note to the screen somehow
+    let todo = this.createElement();
     // let todo = this.createElement(); // should return a full <li> with the right classes and innerHTML
   }
 

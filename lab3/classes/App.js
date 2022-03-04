@@ -25,10 +25,11 @@ export default class App {
     if(e.keyCode == "13") {
       let todoTitle = document.querySelector("#add-item-text").value;
       let todo = new Todo(todoTitle);
+      todo.add();
     }
     // done - this function should create a new todo by using the Todo() class
     // done - new Todo(text) 
-    // todo.add();
+    // done - todo.add();
     // todo.saveToStorage();
     // done - if you used bind() in the previous function, you'll notice that this refers to the current class instance
     // clear the text field with .reset() after adding the item
