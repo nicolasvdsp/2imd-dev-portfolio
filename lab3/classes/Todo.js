@@ -8,9 +8,9 @@ export default class Todo {
   createElement() {
     // HINT🤩
     let li = document.createElement("li");
-    li.innerHTML = this.title;
-    let priority = this.determinePriority(this.title);
-    li.classList.add(`prior-${priority}`);
+    let todo = this.disectTodo(this.title);
+    li.innerHTML = todo[1];
+    li.classList.add(`prior-${todo[0]}`);
     return li;
     // done - this method will create the HTML structure with the correct classes, based on the todo priority
     // done - let newNote = document.createElement("li");
@@ -19,21 +19,23 @@ export default class Todo {
     // done - return newNote;
   }
 
-  determinePriority(title) {
+  disectTodo(title) {
     const priorities = ["low", "medium", "high"];
     let determinePriority = title;
-    const regex = /(^\w+)\:\s?/;
+    let determineTask;
+    const regex = /(^\w+)\:\s?(.*)/;
     const match = regex.exec(title);
 
     if(match) {
       determinePriority = match[1];
+      determineTask = match[2];
       if (priorities.indexOf(determinePriority) > -1){
-        return determinePriority;
+        return [determinePriority, determineTask];
       } else {
-        return determinePriority = "medium";
+        return [determinePriority = "medium", determineTask];
       }
     } else {
-      return determinePriority = "medium";
+      return [determinePriority = "medium", determineTask = title];
     }
   }
 
