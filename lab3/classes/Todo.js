@@ -21,6 +21,10 @@ export default class Todo {
 
   determinePriority(title) {
     console.log("determine priority");
+    let determinePriority = title;
+    const regex = /(^\w+)\:\s?/;
+    const match = regex.exec(title);
+    console.log(match);
   }
 
   markDone(e) {
