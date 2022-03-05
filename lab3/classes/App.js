@@ -4,17 +4,17 @@ export default class App {
   constructor() {
     console.log("🍕");
     // HINT🤩
-    // set up the enter Key
     this.setupEventListeners();
     this.loadFromStorage();
-    // when the app loads, we can show previously saved items from localstorage
+    // done - set up the enter Key
+    // done - when the app loads, we can show previously saved items from localstorage
   }
 
   setupEventListeners() {
     console.log("👂🏽");
     // HINT🤩
-    // done - pressing the enter key in the text field triggers the createItem function
     document.querySelector("#add-item-text").addEventListener("keyup", this.createItem.bind(this));
+    // done - pressing the enter key in the text field triggers the createItem function
     // done - read up on .bind() -> we need to pass the current meaning of this to the eventListener
     // done - while testing, feel free to console.log(this) to see what's in it
   }
@@ -49,8 +49,8 @@ export default class App {
     
     console.log(loadLocalTodoList);
     
-    // load all items from storage here and add them to the screen
-    // use the Todo class to create the elements
+    // done - load all items from storage here and add them to the screen
+    // done - use the Todo class to create the elements
   }
 
   reset() {
