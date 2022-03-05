@@ -27,7 +27,12 @@ export default class Todo {
     console.log(match);
 
     if(match) {
-      return determinePriority = match[1];
+      determinePriority = match[1];
+      if (determinePriority === "low" || determinePriority === "medium" || determinePriority === "high" ){
+        return determinePriority;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
