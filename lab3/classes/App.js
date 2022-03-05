@@ -43,7 +43,8 @@ export default class App {
     let loadLocalTodoList = JSON.parse(localStorage.getItem("todos"));
     loadLocalTodoList.forEach(todoTitle => {
       let todoItem = new Todo(todoTitle);
-      todoItem.add();
+      let li = todoItem.add();
+      li.addEventListener("click", todoItem.markDone);
     });
     
     console.log(loadLocalTodoList);

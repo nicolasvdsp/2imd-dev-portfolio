@@ -38,6 +38,7 @@ export default class Todo {
   }
 
   markDone(e) {
+    console.log(this.innerHTML);
     // HINT🤩
     // this function should mark the current todo as done, by adding the correct CSS class
     // if the item is clicked, but was already marked as done, remove the item from the list
@@ -48,6 +49,7 @@ export default class Todo {
     // done - this function should append the note to the screen somehow
     let todo = this.createElement();
     document.querySelector("#todo-list").appendChild(todo);
+    return todo;
     // done - let todo = this.createElement(); // should return a full <li> with the right classes and innerHTML
   }
 
