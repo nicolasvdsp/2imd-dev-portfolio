@@ -31,10 +31,10 @@ export default class Todo {
       if (determinePriority === "low" || determinePriority === "medium" || determinePriority === "high" ){
         return determinePriority;
       } else {
-        return false;
+        return determinePriority = "medium";
       }
     } else {
-      return false;
+      return determinePriority = "medium";
     }
   }
 
