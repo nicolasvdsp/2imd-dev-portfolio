@@ -10,6 +10,7 @@ export default class Todo {
     let li = document.createElement("li");
     li.innerHTML = this.title;
     let priority = this.determinePriority(this.title);
+    console.log(`priority = ${priority}`);
     li.classList.add("prior-high");
     return li;
     // this method will create the HTML structure with the correct classes, based on the todo priority
@@ -20,11 +21,16 @@ export default class Todo {
   }
 
   determinePriority(title) {
-    console.log("determine priority");
     let determinePriority = title;
     const regex = /(^\w+)\:\s?/;
     const match = regex.exec(title);
     console.log(match);
+
+    if(match) {
+      return determinePriority = match[1];
+    } else {
+      return false;
+    }
   }
 
   markDone(e) {
