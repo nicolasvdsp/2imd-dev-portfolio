@@ -20,13 +20,14 @@ export default class Todo {
   }
 
   determinePriority(title) {
+    const priorities = ["low", "medium", "high"];
     let determinePriority = title;
     const regex = /(^\w+)\:\s?/;
     const match = regex.exec(title);
 
     if(match) {
       determinePriority = match[1];
-      if (determinePriority === "low" || determinePriority === "medium" || determinePriority === "high" ){
+      if (priorities.indexOf(determinePriority) > -1){
         return determinePriority;
       } else {
         return determinePriority = "medium";
