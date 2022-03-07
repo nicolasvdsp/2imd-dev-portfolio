@@ -9,7 +9,7 @@ export default class Todo {
     // HINT🤩
     let li = document.createElement("li");
     let title = this.disectTodo(this.title);
-    console.log(title);
+    // console.log(title);
     let todo = title[1];
     let priority = title[0];
     li.innerHTML = todo;
@@ -26,40 +26,27 @@ export default class Todo {
     const priorities = ["low", "medium", "high"];
     let priority;
     let todo;
-    this.buildSubExpression(priorities);
-    const regex = /(^\w+)\:\s?(.*)/; //what about 1 lange regex die of met of zonder priority detecteert? dan is de dubbele if beneden misschien weg?
+    const regex = this.buildRegularExpression(priorities); //(^${prior[i]}+)\:\s?(.*)/
     const match = regex.exec(title);
 
     if(match) {
-      priority = match[1];
-      todo = match[2];
-      if (priorities.indexOf(priority) > -1){
-        return [priority, todo];
-      } else {
-        return [priority = "medium", todo];
-      }
+          priority = match[1];
+          todo = match[2];
+          return [priority, todo];
     } else {
-      return [priority = "medium", todo = title];
+          return [priority = "medium", todo = title];
     }
   }
 
-  buildSubExpression(priorities) {
+  buildRegularExpression(priorities) {
     let subExpr = '';
     for(let i = 0; i<priorities.length; i++) {
-      subExpr += `^${priorities[i]}|`
+      i != priorities.length-1 ? subExpr += `^${priorities[i]}|` : subExpr += `^${priorities[i]}`; //output: ^low|^medium|^high
     }
-    console.log(subExpr);
+    const expression = `(${subExpr})\:\s?(.*)`; //output: (^low|^medium|^high)\:\s?(.*)
+    let regex = new RegExp(expression); //output: /(^low|^medium|^high)\:\s?(.*)/
+    return regex;
   }
-
-  //   const regex = /(^low|^medium|^high)\:\s?(.*)/;
-  //   if(match) {
-  //     priority = match[1];
-  //     todo = match[2];
-  //     return [priority, todo];
-  //   } else {
-  //     return [priority = "medium", todo = title];
-  //   }
-  // }
 
   markDone(e) {
     console.log(this.innerHTML);
