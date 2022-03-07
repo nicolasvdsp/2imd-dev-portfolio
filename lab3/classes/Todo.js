@@ -26,7 +26,7 @@ export default class Todo {
     const priorities = ["low", "medium", "high"];
     let priority;
     let todo;
-    this.buildSubExpression();
+    this.buildSubExpression(priorities);
     const regex = /(^\w+)\:\s?(.*)/; //what about 1 lange regex die of met of zonder priority detecteert? dan is de dubbele if beneden misschien weg?
     const match = regex.exec(title);
 
@@ -43,9 +43,12 @@ export default class Todo {
     }
   }
 
-  buildSubExpression() {
-    console.log("making expression");
+  buildSubExpression(priorities) {
+    for(let i = 0; i<priorities.length; i++) {
+      console.log(priorities[i]);
+    }
   }
+
   //   const regex = /(^low|^medium|^high)\:\s?(.*)/;
   //   if(match) {
   //     priority = match[1];
