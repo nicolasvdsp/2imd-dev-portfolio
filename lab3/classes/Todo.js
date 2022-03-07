@@ -8,9 +8,12 @@ export default class Todo {
   createElement() {
     // HINT🤩
     let li = document.createElement("li");
-    let todo = this.disectTodo(this.title);
-    li.innerHTML = todo[1];
-    li.classList.add(`prior-${todo[0]}`);
+    let title = this.disectTodo(this.title);
+    console.log(title);
+    let todo = title[1];
+    let priority = title[0];
+    li.innerHTML = todo;
+    li.classList.add(`prior-${priority}`);
     return li;
     // done - this method will create the HTML structure with the correct classes, based on the todo priority
     // done - let newNote = document.createElement("li");
@@ -21,23 +24,37 @@ export default class Todo {
 
   disectTodo(title) {
     const priorities = ["low", "medium", "high"];
-    let determinePriority = title;
-    let determineTask;
-    const regex = /(^\w+)\:\s?(.*)/;
+    let priority;
+    let todo;
+    this.buildSubExpression();
+    const regex = /(^\w+)\:\s?(.*)/; //what about 1 lange regex die of met of zonder priority detecteert? dan is de dubbele if beneden misschien weg?
     const match = regex.exec(title);
 
     if(match) {
-      determinePriority = match[1];
-      determineTask = match[2];
-      if (priorities.indexOf(determinePriority) > -1){
-        return [determinePriority, determineTask];
+      priority = match[1];
+      todo = match[2];
+      if (priorities.indexOf(priority) > -1){
+        return [priority, todo];
       } else {
-        return [determinePriority = "medium", determineTask];
+        return [priority = "medium", todo];
       }
     } else {
-      return [determinePriority = "medium", determineTask = title];
+      return [priority = "medium", todo = title];
     }
   }
+
+  buildSubExpression() {
+    console.log("making expression");
+  }
+  //   const regex = /(^low|^medium|^high)\:\s?(.*)/;
+  //   if(match) {
+  //     priority = match[1];
+  //     todo = match[2];
+  //     return [priority, todo];
+  //   } else {
+  //     return [priority = "medium", todo = title];
+  //   }
+  // }
 
   markDone(e) {
     console.log(this.innerHTML);
