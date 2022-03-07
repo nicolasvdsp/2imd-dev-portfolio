@@ -44,9 +44,11 @@ export default class Todo {
   }
 
   buildSubExpression(priorities) {
+    let subExpr = '';
     for(let i = 0; i<priorities.length; i++) {
-      console.log(priorities[i]);
+      subExpr += `^${priorities[i]}|`
     }
+    console.log(subExpr);
   }
 
   //   const regex = /(^low|^medium|^high)\:\s?(.*)/;
