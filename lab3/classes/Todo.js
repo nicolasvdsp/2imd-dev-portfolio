@@ -59,10 +59,17 @@ export default class Todo {
         }
       });
       localStorage.setItem("todos", JSON.stringify(getLocalTodoList));
-
+      
       console.table(getLocalTodoList);
     } else {
       this.remove();
+      let getLocalTodoList = JSON.parse(localStorage.getItem("todos"));
+      getLocalTodoList.forEach((localTodoItem, index) => {
+        if(localTodoItem.title === this.prototype.title) {
+          getLocalTodoList.splice(index, 1);   
+        }
+      })
+      localStorage.setItem("todos", JSON.stringify(getLocalTodoList));
     }
     
   }
