@@ -1,25 +1,24 @@
 export default class Todo {
-  constructor(title) {
-    // HINT🤩
-    this.title = title;
-    // done - use a constructor to set basic property values
+  constructor(todo) {
+    this.title = todo.title;
+    this.done = todo.done;
   }
 
   createElement() {
-    // HINT🤩
     let li = document.createElement("li");
     let title = this.disectTodo(this.title);
-    // console.log(title);
+
     let todo = title[1];
     let priority = title[0];
     li.innerHTML = todo;
+    li.prototype = this;
     li.classList.add(`prior-${priority}`);
+    if(this.done === true) {
+      li.classList.add('done');
+    };
+
+    li.addEventListener("click", this.markDone.bind(li));
     return li;
-    // done - this method will create the HTML structure with the correct classes, based on the todo priority
-    // done - let newNote = document.createElement("li");
-    // done - check if the todo item includes a priority like medium: to generate the correct classnames
-    // don't forget to hook up an event listener for the click event
-    // done - return newNote;
   }
 
   disectTodo(title) {
@@ -49,37 +48,48 @@ export default class Todo {
   }
 
   markDone(e) {
-    console.log(this.innerHTML);
-    this.classList.add(`done`);
-    // HINT🤩
-    // this function should mark the current todo as done, by adding the correct CSS class
-    // if the item is clicked, but was already marked as done, remove the item from the list
+    console.log(`innerHTML = ${this.innerHTML}`);
+    if(!this.classList.contains('done')) {
+      this.classList.add(`done`);
+      let getLocalTodoList = JSON.parse(localStorage.getItem("todos"));
+      getLocalTodoList.forEach(localTodoItem => {
+        if(localTodoItem.title === this.prototype.title) {
+          localTodoItem.done = true;
+          console.log(localTodoItem);
+        }
+      });
+      localStorage.setItem("todos", JSON.stringify(getLocalTodoList));
+
+      console.table(getLocalTodoList);
+    } else {
+      this.remove();
+    }
+    
   }
 
   add() {
-    // HINT🤩
-    // done - this function should append the note to the screen somehow
     let todo = this.createElement();
     document.querySelector("#todo-list").appendChild(todo);
     return todo;
-    // done - let todo = this.createElement(); // should return a full <li> with the right classes and innerHTML
   }
 
   saveToStorage() {
-    // HINT🤩
     let localTodoList = JSON.parse(localStorage.getItem("todos"));
+    let todoItem = {
+      title: this.title,
+      done: this.done
+    }
     if(localTodoList === null) {
       localTodoList = [];
-      localTodoList.push(this.title);
+      localTodoList.push(todoItem);
+      // localTodoList.push(this.title);
       localStorage.setItem("todos", JSON.stringify(localTodoList));
     } else {
       localTodoList = JSON.parse(localStorage.getItem("todos"));
-      localTodoList.push(this.title);
+      localTodoList.push(todoItem);
+      // localTodoList.push(this.title);
       localStorage.setItem("todos", JSON.stringify(localTodoList));
     }
-    console.log(JSON.parse(localStorage.getItem("todos")));
-    // https://www.codegrepper.com/code-examples/javascript/add+array+to+localstorage
-    // done - localStorage only supports strings, not arrays
-    // done - if you want to store arrays, look at JSON.parse and JSON.stringify
+    // console.log(JSON.parse(localStorage.getItem("todos")));
   }
 }
