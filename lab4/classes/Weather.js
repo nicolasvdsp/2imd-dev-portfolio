@@ -30,24 +30,43 @@ export default class Weather {
                 this.weatherData = json.main;
                 this.windData = json.wind;
                 this.weatherDescription = json.weather[0].description;
+                this.windData.speed = 43;
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
                 this.printWeatherDetails();
-                this.defineSport(this.windData);
+                this.defineSport(this.windData.speed);
             })
     }
 
-    defineSport(windData) {
+    defineSport(windSpeed) {
         let sport;
-        if(windData.speed < 25) {
+        if(windSpeed < 25) {
             sport = "scuba-diving";
+            document.querySelector('.quote').innerHTML = 'Perfect weather for a dive!'
         } else {
             sport = "surfing";
+            document.querySelector('.quote').innerHTML = 'Great waves coming ahead!'
         }
-        //get sport img
+        this.getSportImg(sport);
+    }
+
+    getSportImg(sport) {
+        let url = `https://sports.api.decathlon.com/sports/${sport}`;
+        fetch(url)
+            .then((res) => {
+                return res.json();
+            })
+            .then((json) => {
+                let sportImg = json.data.relationships.images.data[0].url;
+                document.querySelector('.sport_image img').src = sportImg;
+            })
+            .catch((err) => {
+                console.log(err);
+            }) 
+
     }
 
 
