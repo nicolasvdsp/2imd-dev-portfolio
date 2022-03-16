@@ -30,7 +30,6 @@ export default class Weather {
                 this.weatherData = json.main;
                 this.windData = json.wind;
                 this.weatherDescription = json.weather[0].description;
-                this.windData.speed = 43;
             })
             .catch((err) => {
                 console.log(err);
