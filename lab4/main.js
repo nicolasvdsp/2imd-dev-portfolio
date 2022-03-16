@@ -1,3 +1,6 @@
-import App from "./classes/App";
+import Weather from "./classes/Weather";
 
-let app = new App;
+
+let weatherApiKey = "858842322bc4f799cf83b60c5a2582de";
+
+let weather = new Weather(weatherApiKey);
