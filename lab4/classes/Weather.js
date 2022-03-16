@@ -17,9 +17,16 @@ export default class Weather {
     locationSuccess(location) {
         this.lat = location.coords.latitude;
         this.lng = location.coords.longitude;
-        console.log(`latitude: ${this.lat}, longitude: ${this.lng}`);
+        this.getWeather();
     }
+
+    getWeather() {
+        console.log("finding weather for your location");
+    }
+
+
     locationError(error) {
         console.log(`error: ${error.message}`);
+    
     }
 }
