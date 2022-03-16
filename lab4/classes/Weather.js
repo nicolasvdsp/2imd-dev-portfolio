@@ -27,7 +27,12 @@ export default class Weather {
                 return res.json();
             })
             .then((json) => {
-                console.log(json);
+                this.weatherData = json.main;
+                this.windData = json.wind;
+                this.weatherDescription = json.weather[0].description;
+                console.table(this.weatherData);
+                console.table(this.windData);
+                console.log(this.weatherDescription);
             })
             .catch((err) => {
                 console.log(err);
