@@ -14,8 +14,10 @@ export default class Weather {
         );
     }
 
-    locationSuccess() {
-        console.log("success");
+    locationSuccess(location) {
+        this.lat = location.coords.latitude;
+        this.lng = location.coords.longitude;
+        console.log(`latitude: ${this.lat}, longitude: ${this.lng}`);
     }
     locationError(error) {
         console.log(`error: ${error.message}`);
