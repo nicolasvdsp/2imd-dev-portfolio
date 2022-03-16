@@ -36,8 +36,20 @@ export default class Weather {
             })
             .finally(() => {
                 this.printWeatherDetails();
+                this.defineSport(this.windData);
             })
     }
+
+    defineSport(windData) {
+        let sport;
+        if(windData.speed < 25) {
+            sport = "scuba-diving";
+        } else {
+            sport = "surfing";
+        }
+        //get sport img
+    }
+
 
     printWeatherDetails() {
         console.table(this.windData);
