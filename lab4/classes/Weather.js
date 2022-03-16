@@ -21,7 +21,17 @@ export default class Weather {
     }
 
     getWeather() {
-        console.log("finding weather for your location");
+        let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lng}&units=metric&appid=${this.WEATHER_API_KEY}`;
+        fetch(url)
+            .then((res) => {
+                return res.json();
+            })
+            .then((json) => {
+                console.log(json);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
 
