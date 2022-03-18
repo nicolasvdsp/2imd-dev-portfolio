@@ -23,7 +23,7 @@ export default class Weather {
             // this.getWeather();
         } else {
             console.log("%cnot outdated", "color:green");
-            // this.loadFromLocalStorage(this.localWeatherData);
+            this.loadFromLocalStorage(this.localWeatherData);
         }
     }
 
@@ -67,11 +67,13 @@ export default class Weather {
     }
 
     loadFromLocalStorage(data) {
-        //fill object attributes with weather data from local storage
+        console.table(data);
+        this.temperature = data.temperature;
+        this.windSpeed = data.windSpeed;
+        this.windDeg = data.windDeg;
 
-        //like in the .finally() function in getWeather() method, but now get data from local storage in stead of fetch from api
-        //this.printWeatherDetails(); 
-        //this.defineSport(this.windSpeed);
+        this.printWeatherDetails();
+        this.defineSport(this.windSpeed);
     }
 
     defineSport(windSpeed) {
