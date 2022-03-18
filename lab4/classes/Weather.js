@@ -18,20 +18,25 @@ export default class Weather {
     locationSuccess(location) {
         this.lat = location.coords.latitude;
         this.lng = location.coords.longitude;
-        //if weatherdata is outdated
-            this.getWeather();
-        //else
-            //load weather data from local storage
+        if(this.weatherDataOutdated(this.localWeatherData)) {
+            console.log("%coutdated", "color:red");
+            // this.getWeather();
+        } else {
+            console.log("%cnot outdated", "color:green");
+            // this.loadFromLocalStorage(this.localWeatherData);
+        }
     }
 
     weatherDataOutdated(data) {
-        //if there is data in local storage
-            //if data younger than 30 min
-                //data outdated is false
-            //else
-                //data outdated is true
-        //else
-            //data outdated is true
+        if(data != null){
+            if(Math.abs(data.timestamp - Date.now()/6e4) < 1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 
     getWeather() {
