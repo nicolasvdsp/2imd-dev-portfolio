@@ -20,7 +20,7 @@ export default class Weather {
         this.lng = location.coords.longitude;
         if(this.weatherDataOutdated(this.localWeatherData)) {
             console.log("%coutdated", "color:red");
-            // this.getWeather();
+            this.getWeather();
         } else {
             console.log("%cnot outdated", "color:green");
             this.loadFromLocalStorage(this.localWeatherData);
@@ -29,7 +29,7 @@ export default class Weather {
 
     weatherDataOutdated(data) {
         if(data != null){
-            if(Math.abs(data.timestamp - Date.now()/6e4) < 1) {
+            if(Math.abs(data.timestamp - Date.now()/6e4) < 60) {
                 return false;
             } else {
                 return true;
@@ -50,6 +50,7 @@ export default class Weather {
                 this.windSpeed = json.wind.speed;
                 this.windDeg = json.wind.deg;
                 this.weatherDescription = json.weather[0].description;
+                this.timestamp = Math.round(Date.now()/6e4);
             })
             .catch((err) => {
                 console.log(err);
@@ -57,13 +58,27 @@ export default class Weather {
             .finally(() => {
                 this.printWeatherDetails();
                 this.defineSport(this.windSpeed);
+                this.saveToLocalStorage();
             })
     }
 
     saveToLocalStorage() {
-        //save temperature, windspeed, winddegree and fetchtimestamp in JSON object
+        let localWeatherData = this.localWeatherData;
+        let weatherDetails = {
+            temperature: this.temperature,
+            windSpeed: this.windSpeed,
+            windDeg: this.windDeg,
+            timestamp: this.timestamp
+        };
 
-        //save JSON in local storage and replace if it already exists
+        if(localWeatherData === null) {
+            localStorage.setItem("weatherDetails", JSON.stringify(weatherDetails));
+        } else {
+            localStorage.clear();
+            localStorage.setItem("weatherDetails", JSON.stringify(weatherDetails));
+        }
+        localWeatherData = JSON.parse(localStorage.getItem("weatherDetails"));
+        console.log(localWeatherData);
     }
 
     loadFromLocalStorage(data) {
