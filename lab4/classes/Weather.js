@@ -21,7 +21,7 @@ export default class Weather {
     }
 
     getWeather() {
-        let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lng}&units=metric&appid=${this.WEATHER_API_KEY}`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lng}&units=metric&appid=${this.WEATHER_API_KEY}`;
         fetch(url)
             .then((res) => {
                 return res.json();
