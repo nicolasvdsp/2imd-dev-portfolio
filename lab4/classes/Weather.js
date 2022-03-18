@@ -3,7 +3,8 @@ export default class Weather {
         this.WEATHER_API_KEY = WEATHER_API_KEY;
         this.lat = 0;
         this.lng = 0;
-
+        this.localWeatherData = JSON.parse(localStorage.getItem("weatherDetails"));
+        console.log(this.localWeatherData);
         this.getLocation();
     }   
 
@@ -17,7 +18,20 @@ export default class Weather {
     locationSuccess(location) {
         this.lat = location.coords.latitude;
         this.lng = location.coords.longitude;
-        this.getWeather();
+        //if weatherdata is outdated
+            this.getWeather();
+        //else
+            //load weather data from local storage
+    }
+
+    weatherDataOutdated(data) {
+        //if there is data in local storage
+            //if data younger than 30 min
+                //data outdated is false
+            //else
+                //data outdated is true
+        //else
+            //data outdated is true
     }
 
     getWeather() {
@@ -39,6 +53,20 @@ export default class Weather {
                 this.printWeatherDetails();
                 this.defineSport(this.windSpeed);
             })
+    }
+
+    saveToLocalStorage() {
+        //save temperature, windspeed, winddegree and fetchtimestamp in JSON object
+
+        //save JSON in local storage and replace if it already exists
+    }
+
+    loadFromLocalStorage(data) {
+        //fill object attributes with weather data from local storage
+
+        //like in the .finally() function in getWeather() method, but now get data from local storage in stead of fetch from api
+        //this.printWeatherDetails(); 
+        //this.defineSport(this.windSpeed);
     }
 
     defineSport(windSpeed) {
