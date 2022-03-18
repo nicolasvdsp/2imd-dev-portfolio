@@ -27,8 +27,9 @@ export default class Weather {
                 return res.json();
             })
             .then((json) => {
-                this.weatherData = json.main;
-                this.windData = json.wind;
+                this.temperature = json.main.temp;
+                this.windSpeed = json.wind.speed;
+                this.windDeg = json.wind.deg;
                 this.weatherDescription = json.weather[0].description;
             })
             .catch((err) => {
@@ -36,7 +37,7 @@ export default class Weather {
             })
             .finally(() => {
                 this.printWeatherDetails();
-                this.defineSport(this.windData.speed);
+                this.defineSport(this.windSpeed);
             })
     }
 
@@ -70,11 +71,10 @@ export default class Weather {
 
 
     printWeatherDetails() {
-        console.table(this.windData);
-        document.querySelector('.temperature span').innerHTML = Math.round(this.weatherData.temp);
-        document.querySelector('.wind_direction').innerHTML = this.setWindDirection(this.windData.deg);
-        document.querySelector('.wind_speed span').innerHTML = Math.round(this.windData.speed);  
-        document.querySelector('.wind_arrow').style.transform = `rotate(${this.windData.deg}deg)`;
+        document.querySelector('.temperature span').innerHTML = Math.round(this.temperature);
+        document.querySelector('.wind_direction').innerHTML = this.setWindDirection(this.windDeg);
+        document.querySelector('.wind_speed span').innerHTML = Math.round(this.windSpeed);  
+        document.querySelector('.wind_arrow').style.transform = `rotate(${this.windDeg}deg)`;
     }
      
     setWindDirection(deg) {
